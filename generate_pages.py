@@ -31,10 +31,18 @@ if not os.path.exists(pages_directory):
 
 # Generate Python files for each page
 for i, page_name in enumerate(page_names, start=1):
+    page_title = page_name.replace('_', ' ').title()
+    page_icon = page_name.split(' ')[0]
+    page_title_no_icon = ' '.join(page_title.split(' ')[1:])
     file_content = f"""
 import streamlit as st
 
-st.title("{page_name.replace('_', ' ').title()}")
+st.set_page_config(
+    page_title="{page_title_no_icon}",
+    page_icon="{page_icon}"
+)
+
+st.title("{page_title}")
 
 st.write("This is a Streamlit app page, bonjour 👋🏻.")
 """

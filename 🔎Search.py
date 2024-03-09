@@ -1,13 +1,18 @@
 import os
 import streamlit as st
 
+st.set_page_config(
+    page_title="Streamlit Search",
+    page_icon="🔍"
+)
+
 st.title("Streamlit Search")
 
 clean_page = None
 
 pages = sorted(os.listdir('pages'))
 page2cleanpage = {
-    page: ' '.join(page.split('_')[1:]).strip('.py')
+    page: ' '.join(page.split('_')[1:]).replace('.py', '')
     for page in pages
 }
 cleanpage2page = {
